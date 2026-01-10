@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michelle Duong - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -56,6 +57,11 @@
             margin-bottom: 2rem;
             letter-spacing: 1px;
             backdrop-filter: blur(10px);
+        }
+
+        .status-badge i {
+            margin-right: 0.5rem;
+            color: #4ade80;
         }
 
         .left-card h1 {
@@ -128,8 +134,7 @@
             justify-content: center;
             color: white;
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -181,6 +186,39 @@
         }
 
         /* About Section */
+        .about-container {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .about-image-card {
+            flex-shrink: 0;
+            width: 280px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+        }
+
+        .about-image-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .about-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
         .about-text {
             font-size: 1.2rem;
             color: #4a4a4a;
@@ -225,6 +263,7 @@
 
         .skill-icon {
             font-size: 2rem;
+            color: #1a1a1a;
         }
 
         .skill-item p {
@@ -396,12 +435,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             transition: all 0.3s ease;
+            color: white;
         }
 
         .contact-item:hover .contact-icon {
             background: white;
+            color: #1a1a1a;
         }
 
         .contact-details h4 {
@@ -433,27 +474,199 @@
                 margin-left: 0;
                 width: 100%;
             }
+
+            .project-image-wrapper {
+                height: 300px;
+            }
         }
 
         @media (max-width: 768px) {
             .left-card {
-                padding: 2rem;
+                padding: 3rem 2rem;
+                min-height: auto;
+                padding-bottom: 4rem;
             }
 
             .left-card h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+
+            .left-card .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .nav-menu {
+                margin: 2rem 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .nav-menu a {
+                font-size: 1rem;
+            }
+
+            .social-links {
+                margin-top: 3rem;
             }
 
             .content-section {
-                padding: 2rem;
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+
+            .section-number {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .about-text {
+                font-size: 1.05rem;
+            }
+
+            .about-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .about-image-card {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .about-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .about-image-card {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .skill-item {
+                padding: 2rem;
+            }
+
+            .skill-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .skill-icon {
+                font-size: 1.5rem;
+            }
+
+            .skill-item p {
+                font-size: 0.95rem;
+            }
+
+            .project-card {
+                margin-bottom: 2rem;
             }
 
             .project-image-wrapper {
-                height: 250px;
+                height: 220px;
+            }
+
+            .project-info {
+                padding: 2rem 1.5rem;
+            }
+
+            .project-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .project-info p {
+                font-size: 0.95rem;
+            }
+
+            .project-number {
+                font-size: 3rem;
+                padding: 1.5rem;
+            }
+
+            .contact-section {
+                padding: 2.5rem 2rem;
+            }
+
+            .contact-section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-section p {
+                font-size: 1.05rem;
+            }
+
+            .contact-item {
+                padding: 1.5rem;
+            }
+
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+
+            .contact-details h4 {
+                font-size: 1rem;
+            }
+
+            .contact-details p {
+                font-size: 0.9rem;
+            }
+
+            .tag {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .left-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .left-card h1 {
+                font-size: 2.2rem;
+            }
+
+            .status-badge {
+                font-size: 0.7rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .content-section {
+                padding: 2.5rem 1.25rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .project-image-wrapper {
+                height: 200px;
+            }
+
+            .project-info {
+                padding: 1.5rem;
+            }
+
+            .contact-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
             }
         }
 
@@ -467,7 +680,7 @@
         <!-- Fixed Left Card -->
         <div class="left-card">
             <div class="card-content">
-                <div class="status-badge">● AVAILABLE FOR WORK</div>
+                <div class="status-badge"><i class="fas fa-circle"></i>AVAILABLE FOR WORK</div>
                 <h1>Michelle Duong</h1>
                 <p class="subtitle">Full-Stack Developer & Freelancer.</p>
                 
@@ -481,9 +694,9 @@
                 </nav>
 
                 <div class="social-links">
-                    <a href="https://github.com/michelleduong03" title="GitHub">GH</a>
-                    <a href="https://www.linkedin.com/in/michelleduong03/" title="LinkedIn">IN</a>
-                    <a href="mailto:michelle.l.duong@gmail.com" title="Email">@</a>
+                    <a href="https://github.com/michelleduong03" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/michelleduong03/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:michelle.l.duong@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
@@ -494,12 +707,20 @@
             <section id="about" class="content-section">
                 <div class="section-number">01 — About</div>
                 <h2 class="section-title">Hello, I'm Michelle</h2>
-                <p class="about-text">
-                    I'm a passionate full-stack developer with a strong interest in web development and building full-stack systems that help solve real-world problems.
-                </p>
-                <p class="about-text">
-                    My approach combines technical expertise with creative problem-solving, ensuring every project not only meets requirements but exceeds expectations.
-                </p>
+                
+                <div class="about-container">
+                    <div class="about-image-card">
+                        <img src="images/profile.JPG" alt="Michelle Duong" />
+                    </div>
+                    <div class="about-content">
+                        <p class="about-text">
+                            I'm a passionate full-stack developer with a strong interest in web development and building full-stack systems that help solve real-world problems.
+                        </p>
+                        <p class="about-text">
+                            My approach combines technical expertise with creative problem-solving, ensuring every project not only meets requirements but exceeds expectations.
+                        </p>
+                    </div>
+                </div>
             </section>
 
             <!-- Skills Section -->
@@ -511,33 +732,46 @@
                     <div class="skill-item">
                         <div class="skill-header">
                             <h3>Frontend Development</h3>
-                            <div class="skill-icon">💻</div>
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
                         </div>
-                        <p>Building responsive, performant interfaces with React, Vue, and modern JavaScript. I create pixel-perfect designs that work seamlessly across all devices.</p>
+                        <p>
+                            Building clean, responsive interfaces using React and modern JavaScript,
+                            with a focus on usability, performance, and simple design that works well
+                            across devices.
+                        </p>
                     </div>
 
                     <div class="skill-item">
                         <div class="skill-header">
                             <h3>Backend Architecture</h3>
-                            <div class="skill-icon">⚙️</div>
+                            <div class="skill-icon"><i class="fas fa-server"></i></div>
                         </div>
-                        <p>Designing scalable server-side solutions with Node.js, Python, and robust database systems. API design and optimization are my specialties.</p>
+                        <p> 
+                            Designing scalable server-side solutions with Node.js, Python, and robust database systems. 
+                            Focused on clear APIs, data flow, and reliability.
+                        </p>
                     </div>
 
                     <div class="skill-item">
                         <div class="skill-header">
                             <h3>UI/UX Design</h3>
-                            <div class="skill-icon">🎨</div>
+                            <div class="skill-icon"><i class="fas fa-palette"></i></div>
                         </div>
-                        <p>Creating beautiful, intuitive user experiences through research-driven design. Every interface tells a story and solves a problem.</p>
+                        <p>
+                            Mindful about how things feel to use. Focused on clarity, layout, and
+                            small details that make interfaces intuitive and easy to navigate.
+                        </p>
                     </div>
 
                     <div class="skill-item">
                         <div class="skill-header">
                             <h3>Cloud & DevOps</h3>
-                            <div class="skill-icon">☁️</div>
+                            <div class="skill-icon"><i class="fas fa-cloud"></i></div>
                         </div>
-                        <p>Deploying and managing applications on AWS, Google Cloud, and Azure. CI/CD pipelines and containerization are part of my workflow.</p>
+                        <p>
+                            Deploying and managing applications on AWS, deploy and maintain full-stack applications using AWS, handling hosting,
+                            environment configuration, and basic DevOps setup.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -555,7 +789,7 @@
                         </div>
                     </div>
                     <div class="project-info">
-                        <div class="project-category">BNPL Tracking Application</div>
+                        <div class="project-category">Financial Application</div>
                         <h3>Track Now, Not Later</h3>
                         <p>Track installments and stay on top of your finances with our all-in-one dashboard. Connect your accounts and never miss a Buy Now, Pay Later payment again.</p>
                         <div class="project-tags">
@@ -611,12 +845,16 @@
             <section id="contact" class="content-section">
                 <div class="section-number">04 — Contact</div>
                 <div class="contact-section">
-                    <h2>Let's Build Something Great</h2>
-                    <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
+                    <h2>Let's Connect</h2>
+                    <p>
+                        I’m always open to new projects, collaborations, or opportunities.
+                        If you have an idea you want to build or just want to chat, feel free
+                        to reach out!
+                    </p>
 
                     <div class="contact-methods">
                         <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                             <div class="contact-details">
                                 <h4>Email</h4>
                                 <p>michelle.l.duong@gmail.com</p>
@@ -624,7 +862,7 @@
                         </div>
 
                         <div class="contact-item">
-                            <div class="contact-icon">💼</div>
+                            <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
                             <div class="contact-details">
                                 <h4>LinkedIn</h4>
                                 <p>linkedin.com/in/michelleduong03</p>
@@ -632,7 +870,7 @@
                         </div>
 
                         <div class="contact-item">
-                            <div class="contact-icon">🐙</div>
+                            <div class="contact-icon"><i class="fab fa-github"></i></div>
                             <div class="contact-details">
                                 <h4>GitHub</h4>
                                 <p>github.com/michelleduong03</p>
