@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michelle Duong - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+            overflow-x: hidden;
+        }
+
+        /* Split Layout */
+        .split-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Fixed Card */
+        .left-card {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 40%;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            z-index: 100;
+        }
+
+        .card-content {
+            max-width: 500px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+        }
+
+        .left-card h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .left-card .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin: 3rem 0;
+        }
+
+        .nav-menu li {
+            margin: 1.5rem 0;
+        }
+
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: white;
+        }
+
+        .nav-menu a:hover::before,
+        .nav-menu a.active::before {
+            width: 60px;
+            background: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: auto;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: #1a1a1a;
+            transform: translateY(-3px);
+        }
+
+        /* Right Scrollable Content */
+        .right-content {
+            margin-left: 40%;
+            width: 60%;
+            background: #fafafa;
+        }
+
+        .content-section {
+            min-height: 100vh;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-number {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            color: #1a1a1a;
+            letter-spacing: -1.5px;
+        }
+
+        /* About Section */
+        .about-text {
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .skill-item:hover {
+            border-color: #1a1a1a;
+            transform: translateX(10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .skill-item h3 {
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+        }
+
+        .skill-item p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Projects Section */
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            border: 1px solid #e5e5e5;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.16);
+            border-color: #d0d0d0;
+        }
+
+        .project-image-wrapper {
+            width: 100%;
+            height: 350px;
+            background: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-number {
+            font-size: 5rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.4);
+            line-height: 1;
+        }
+
+        .project-info {
+            padding: 2.5rem;
+        }
+
+        .project-category {
+            font-size: 0.8rem;
+            color: #999;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .project-info h3 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .project-info p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 0.6rem 1.1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #1a1a1a;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            padding: 4rem;
+            border-radius: 24px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            font-weight: 800;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .contact-methods {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.8rem;
+            background: #fafafa;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #f0f0f0;
+        }
+
+        .contact-item:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateX(10px);
+            border-color: #1a1a1a;
+        }
+
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            background: #1a1a1a;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: white;
+        }
+
+        .contact-details h4 {
+            font-size: 1.15rem;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        .contact-details p {
+            font-size: 0.95rem;
+            margin: 0;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .split-container {
+                flex-direction: column;
+            }
+
+            .left-card {
+                position: relative;
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .right-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-card {
+                padding: 2rem;
+            }
+
+            .left-card h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .project-image-wrapper {
+                height: 250px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container">
+        <!-- Fixed Left Card -->
+        <div class="left-card">
+            <div class="card-content">
+                <div class="status-badge">● AVAILABLE FOR WORK</div>
+                <h1>Michelle Duong</h1>
+                <p class="subtitle">Full-Stack Developer & Freelancer.</p>
+                
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#about" class="nav-link active">About</a></li>
+                        <li><a href="#skills" class="nav-link">Skills</a></li>
+                        <li><a href="#projects" class="nav-link">Projects</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="social-links">
+                    <a href="https://github.com/michelleduong03" title="GitHub">GH</a>
+                    <a href="https://www.linkedin.com/in/michelleduong03/" title="LinkedIn">IN</a>
+                    <a href="mailto:michelle.l.duong@gmail.com" title="Email">@</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Scrollable Content -->
+        <div class="right-content">
+            <!-- About Section -->
+            <section id="about" class="content-section">
+                <div class="section-number">01 — About</div>
+                <h2 class="section-title">Hello, I'm Michelle</h2>
+                <p class="about-text">
+                    I'm a passionate full-stack developer with a strong interest in web development and building full-stack systems that help solve real-world problems.
+                </p>
+                <p class="about-text">
+                    My approach combines technical expertise with creative problem-solving, ensuring every project not only meets requirements but exceeds expectations.
+                </p>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="content-section">
+                <div class="section-number">02 — Expertise</div>
+                <h2 class="section-title">What I Do Best</h2>
+
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <h3>Frontend Development</h3>
+                            <div class="skill-icon">💻</div>
+                        </div>
+                        <p>Building responsive, performant interfaces with React, Vue, and modern JavaScript. I create pixel-perfect designs that work seamlessly across all devices.</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <h3>Backend Architecture</h3>
+                            <div class="skill-icon">⚙️</div>
+                        </div>
+                        <p>Designing scalable server-side solutions with Node.js, Python, and robust database systems. API design and optimization are my specialties.</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <h3>UI/UX Design</h3>
+                            <div class="skill-icon">🎨</div>
+                        </div>
+                        <p>Creating beautiful, intuitive user experiences through research-driven design. Every interface tells a story and solves a problem.</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <h3>Cloud & DevOps</h3>
+                            <div class="skill-icon">☁️</div>
+                        </div>
+                        <p>Deploying and managing applications on AWS, Google Cloud, and Azure. CI/CD pipelines and containerization are part of my workflow.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="content-section">
+                <div class="section-number">03 — Portfolio</div>
+                <h2 class="section-title">Selected Work</h2>
+
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="images/TNNL.png" alt="Track Now Not Later preview" />
+                        <div class="project-overlay">
+                            <div class="project-number">01</div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-category">BNPL Tracking Application</div>
+                        <h3>Track Now, Not Later</h3>
+                        <p>Track installments and stay on top of your finances with our all-in-one dashboard. Connect your accounts and never miss a Buy Now, Pay Later payment again.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Express</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="images/AI_Bias.png" alt="Am I(AI) Biased preview" />
+                        <div class="project-overlay">
+                            <div class="project-number">02</div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-category">Senior Capstone</div>
+                        <h3>Am I(AI) Biased</h3>
+                        <p>A research project exploring how large language models like Llama and Phi handle bias, combining hands-on model testing with academic research to understand sources, impacts, and mitigation of AI bias.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">OpenAI API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="images/Chimi.png" alt="Chimi Cafe Application preview" />
+                        <div class="project-overlay">
+                            <div class="project-number">03</div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-category">Cafe Application</div>
+                        <h3>Chimi</h3>
+                        <p>A lightweight, local-friendly system for managing and announcing customer orders in small cafes. Designed to reduce confusion, long lines, and missed orders by displaying live queues and announcing pickups using text-to-speech.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Express</span>
+                            <span class="tag">Web Speech API</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="content-section">
+                <div class="section-number">04 — Contact</div>
+                <div class="contact-section">
+                    <h2>Let's Build Something Great</h2>
+                    <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>michelle.l.duong@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-details">
+                                <h4>LinkedIn</h4>
+                                <p>linkedin.com/in/michelleduong03</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">🐙</div>
+                            <div class="contact-details">
+                                <h4>GitHub</h4>
+                                <p>github.com/michelleduong03</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('.content-section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    const sectionId = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
