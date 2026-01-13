@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michelle Duong - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            letter-spacing: -4px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.5) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            border-color: #fff;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 4rem;
+            color: #fff;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        .about-text p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        #skills {
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-card {
+            padding: 3rem;
+            background: #0d0d0d;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .skill-icon {
+            font-size: 1.5rem;
+            color: rgba(99, 102, 241, 0.6);
+        }
+
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 4rem;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .project-card:nth-child(even) {
+            grid-template-columns: 1fr 1.2fr;
+        }
+
+        .project-card:nth-child(even) .project-image {
+            order: 2;
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-number {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(99, 102, 241, 0.8);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-info h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .project-info p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        #contact {
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            padding: 2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            min-width: 200px;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: rgba(99, 102, 241, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h4 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .project-card,
+            .project-card:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card:nth-child(even) .project-image {
+                order: 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            .about-text p {
+                font-size: 1.1rem;
+            }
+
+            .project-card {
+                padding: 2rem;
+                gap: 2rem;
+            }
+
+            .project-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .skill-card {
+                padding: 2rem;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">MD</div>
+        <ul class="nav-links">
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Work</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Michelle Duong</h1>
+            <p class="hero-subtitle">Full-Stack Developer</p>
+            <div class="social-icons">
+                <a href="https://github.com/michelleduong03" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/michelleduong03/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:michelle.l.duong@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="fade-in">
+        <div class="section-label">About Me</div>
+        <h2>Hello, I'm Michelle</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="images/profile.JPG" alt="Michelle Duong" />
+            </div>
+            <div class="about-text">
+                <p>
+                    I'm a passionate full-stack developer with a strong interest in web development and building full-stack systems that help solve real-world problems.
+                </p>
+                <p>
+                    My approach combines technical expertise with creative problem-solving, ensuring every project not only meets requirements but exceeds expectations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="fade-in">
+        <div class="section-label">Expertise</div>
+        <h2>What I Do Best</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-header">
+                    <h3>Frontend Development</h3>
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                </div>
+                <p>
+                    Building clean, responsive interfaces using React and modern JavaScript,
+                    with a focus on usability, performance, and simple design that works well
+                    across devices.
+                </p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <h3>Backend Architecture</h3>
+                    <div class="skill-icon"><i class="fas fa-server"></i></div>
+                </div>
+                <p>
+                    Designing scalable server-side solutions with Node.js, Python, and robust database systems. 
+                    Focused on clear APIs, data flow, and reliability.
+                </p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <h3>UI/UX Design</h3>
+                    <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                </div>
+                <p>
+                    Mindful about how things feel to use. Focused on clarity, layout, and
+                    small details that make interfaces intuitive and easy to navigate.
+                </p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                </div>
+                <p>
+                    Deploying and managing applications on AWS, deploy and maintain full-stack applications using AWS, handling hosting,
+                    environment configuration, and basic DevOps setup.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="fade-in">
+        <div class="section-label">Portfolio</div>
+        <h2>Selected Work</h2>
+        <div class="projects-grid">
+            <a href="https://github.com/michelleduong03/TrackNowNotLater_Info" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <img src="images/TNNL.png" alt="Track Now Not Later preview" />
+                </div>
+                <div class="project-info">
+                    <div class="project-number">Financial Application</div>
+                    <h3>Track Now, Not Later</h3>
+                    <p>Track installments and stay on top of your finances with our all-in-one dashboard. Connect your accounts and never miss a Buy Now, Pay Later payment again.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Express</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">AWS</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://github.com/michelleduong03/Am-I-AI-Biased" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <img src="images/AI_Bias.png" alt="Am I(AI) Biased preview" />
+                </div>
+                <div class="project-info">
+                    <div class="project-number">Senior Capstone</div>
+                    <h3>Am I(AI) Biased</h3>
+                    <p>A research project exploring how large language models like Llama and Phi handle bias, combining hands-on model testing with academic research to understand sources, impacts, and mitigation of AI bias.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenAI API</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://github.com/michelleduong03/Chimi" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <img src="images/Chimi.png" alt="Chimi Cafe Application preview" />
+                </div>
+                <div class="project-info">
+                    <div class="project-number">Cafe Application</div>
+                    <h3>Chimi</h3>
+                    <p>A lightweight, local-friendly system for managing and announcing customer orders in small cafes. Designed to reduce confusion, long lines, and missed orders by displaying live queues and announcing pickups using text-to-speech.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Express</span>
+                        <span class="tag">Web Speech API</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <div class="section-label">Get In Touch</div>
+        <h2>Let's Connect</h2>
+        <div class="contact-content">
+            <p>
+                I'm always open to new projects, collaborations, or opportunities.
+                If you have an idea you want to build or just want to chat, feel free
+                to reach out!
+            </p>
+            <div class="contact-methods">
+                <a href="mailto:michelle.l.duong@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>michelle.l.duong@gmail.com</p>
+                </a>
+                <a href="https://www.linkedin.com/in/michelleduong03/" target="_blank" class="contact-item">
+                    <i class="fab fa-linkedin-in"></i>
+                    <h4>LinkedIn</h4>
+                    <p>linkedin.com/in/michelleduong03</p>
+                </a>
+                <a href="https://github.com/michelleduong03" target="_blank" class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <h4>GitHub</h4>
+                    <p>github.com/michelleduong03</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', x + '%');
+                card.style.setProperty('--mouse-y', y + '%');
+            });
+        });
+    </script>
+</body>
+</html>
